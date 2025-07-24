@@ -160,9 +160,7 @@
                       extensions = with pkgs.vscode-extensions; [
                         jnoortheen.nix-ide
                         myriad-dreamin.tinymist
-                        #platformio.platformio-ide
                         ms-vscode.cpptools
-                        #Wokwi.wokwi-vscode
                       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
                         {
                           name = "wokwi-vscode";
@@ -173,8 +171,14 @@
                         {
                           name = "platformio-ide";
                           publisher = "platformio";
-                          version = "3.3.3";
-                          sha256 = "cVYnFhdeClHhuVaTWRU2IDIA1mFq1iLveZUIhEhMSck=";
+                          version = "3.3.4";
+                          sha256 = "qfNz4IYjCmCMFLtAkbGTW5xnsVT8iDnFWjrgkmr2Slk=";
+                        }
+                        {
+                          name = "commit-message-editor";
+                          publisher = "adam-bender";
+                          version = "0.25.0";
+                          sha256 = "Vw5RkY3W4FqKvCWlscxxpGQsfm3g2bZJ5suityQ3mG8=";
                         }
                       ];
                       userSettings = {
