@@ -194,6 +194,8 @@
                         "telemetry.feedback.enabled" = false;
                         "telemetry.editStats.enabled" = false;
                         "workbench.startupEditor" = "none";
+                        "git.confirmSync" = false;
+                        "explorer.confirmDelete" = false;
                       };
                     };
                   };
