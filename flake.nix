@@ -138,7 +138,14 @@
                   packages = [
                     pkgs.nautilus
                     pkgs.gnome-console
+                    pkgs.gnome-contacts
+                    pkgs.evolution
+                    pkgs.qucs-s
+                    pkgs.octaveFull
                   ];
+                  sessionVariables = {
+                    QT_QPA_PLATFORM = "wayland";
+                  };
                   stateVersion = vars.stateVersion;
                 };
 
@@ -155,12 +162,15 @@
                     package = pkgs.vscode.fhsWithPackages (ps: with ps; [
                       python3
                       python3Packages.pip
+                      gh
+                      git-cliff
                     ]);
                     profiles.default = {
                       extensions = with pkgs.vscode-extensions; [
                         jnoortheen.nix-ide
                         myriad-dreamin.tinymist
                         ms-vscode.cpptools
+                        github.vscode-github-actions
                       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
                         {
                           name = "wokwi-vscode";
@@ -196,6 +206,7 @@
                         "workbench.startupEditor" = "none";
                         "git.confirmSync" = false;
                         "explorer.confirmDelete" = false;
+                        "explorer.confirmDragAndDrop" = false;
                       };
                     };
                   };
