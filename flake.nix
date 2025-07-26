@@ -111,6 +111,11 @@
             environment.gnome.excludePackages = (with pkgs; [
               gnome-tour
             ]);
+
+            fonts.packages = with pkgs; [
+              newcomputermodern
+              cm_unicode
+            ];
             # environment.systemPackages = with pkgs; [
             # ];
 
@@ -142,6 +147,8 @@
                     pkgs.evolution
                     pkgs.qucs-s
                     pkgs.octaveFull
+                    pkgs.telegram-desktop
+                    pkgs.nixfmt-rfc-style
                   ];
                   sessionVariables = {
                     QT_QPA_PLATFORM = "wayland";
@@ -157,20 +164,27 @@
                     enable = true;
                     package = pkgs.google-chrome;
                   };
+                  direnv = {
+                    enable = true;
+                    enableBashIntegration = true;
+                    nix-direnv.enable = true;
+                    config = {
+                      whitelist.prefix = [ "~/Projects" ];
+                    };
+                  };
                   vscode = {
                     enable = true;
-                    package = pkgs.vscode.fhsWithPackages (ps: with ps; [
-                      python3
-                      python3Packages.pip
-                      gh
-                      git-cliff
-                    ]);
+                    package = pkgs.vscode.fhs;
+                    mutableExtensionsDir = false;
                     profiles.default = {
                       extensions = with pkgs.vscode-extensions; [
                         jnoortheen.nix-ide
                         myriad-dreamin.tinymist
                         ms-vscode.cpptools
                         github.vscode-github-actions
+                        # mads-hartmann.bash-ide-vscode
+                        foxundermoon.shell-format
+                        tomoki1207.pdf
                       ] ++ pkgs.vscode-utils.extensionsFromVscodeMarketplace [
                         {
                           name = "wokwi-vscode";
@@ -207,6 +221,11 @@
                         "git.confirmSync" = false;
                         "explorer.confirmDelete" = false;
                         "explorer.confirmDragAndDrop" = false;
+                        "explorer.confirmPasteNative" = false;
+                        "platformio-ide.useBuiltinPIOCore" = false;
+                        "platformio-ide.autoOpenPlatformIOIniFile" = false;
+                        "platformio-ide.disablePIOHomeStartup" = true;
+                        "tinymist.preview.invertColors" = true;
                       };
                     };
                   };
